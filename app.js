@@ -26,7 +26,7 @@ function renderMovies(movies) {
 
 async function loadCatalog() {
   status.textContent = "Carregando o catálogo...";
-  if (API_KEY === "YOUR_TMDB_API_KEY") {
+  if (API_KEY === "3f197a5e6c35af045a738731078dbe50") {
     renderMovies(demoMovies);
     status.textContent = "Catálogo de demonstração · adicione sua chave TMDB em app.js para usar dados reais.";
     return;
