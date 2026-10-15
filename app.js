@@ -1,4 +1,4 @@
-const API_KEY = "YOUR_TMDB_API_KEY";
+const API_KEY = "3f197a5e6c35af045a738731078dbe50";
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 const grid = document.querySelector("#movie-grid");
 const status = document.querySelector("#status");
@@ -42,6 +42,7 @@ function renderMovies(movies) {
 
 async function loadCatalog() {
   status.textContent = "Carregando o catálogo...";
+<<<<<<< HEAD
   const search = document.querySelector("#search-input").value.trim();
 
   if (API_KEY === "YOUR_TMDB_API_KEY") {
@@ -53,6 +54,11 @@ async function loadCatalog() {
     status.textContent = search
       ? `${filteredMovies.length} filme(s) encontrado(s) no catálogo de demonstração.`
       : "Catálogo de demonstração · adicione sua chave TMDB em app.js para usar dados reais.";
+=======
+  if (API_KEY === "3f197a5e6c35af045a738731078dbe50") {
+    renderMovies(demoMovies);
+    status.textContent = "Catálogo de demonstração · adicione sua chave TMDB em app.js para usar dados reais.";
+>>>>>>> 27c3669ec8bb312451c0dcf21adc1e6dfc3a5d70
     return;
   }
 
