@@ -1,1 +1,40 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NET.Physics</title><link rel="stylesheet" href="styles.css"></head><body><header><b>NET<span>.</span>Physics</b><nav><a href="#catalog">Catalog</a> · <a href="#rentals">My rentals <i id="rental-count">0</i></a></nav></header><main><section class="hero"><small>PHYSICAL MEDIA RENTAL SERVICE</small><h1>Watch it<br><em>your way.</em></h1><p>A home for cinema in every format.</p><a href="#catalog">Explore the catalog ↘</a></section><section id="catalog"><small>BROWSE THE COLLECTION</small><h2>Now showing</h2><form id="search-form"><input id="search-input" placeholder="Search films..."><button>Search</button></form><div id="status"></div><div id="movie-grid"></div></section><section id="rentals"><small>YOUR SHELF</small><h2>My rentals</h2><div id="rentals-list"></div></section></main><dialog id="movie-dialog"><button class="close">×</button><div id="movie-detail"></div></dialog><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NET.Physics</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#">NET<span>.</span>Physics</a>
+      <nav>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#locacoes">Minhas locações <b id="rental-count">0</b></a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Serviço de locação de mídia física</p>
+        <h1>Assista do<br><em>seu jeito.</em></h1>
+        <p>Um lar para o cinema em todos os formatos. Alugue os filmes que você ama na mídia que quiser.</p>
+        <a class="button" href="#catalogo">Explorar o catálogo ↘</a>
+      </section>
+      <section id="catalogo">
+        <div class="heading">
+          <div><p class="eyebrow">Explore a coleção</p><h2>Em destaque</h2></div>
+          <span class="mono">MAIS POPULARES DA SEMANA</span>
+        </div>
+        <form id="search-form"><input id="search-input" type="search" placeholder="Buscar filmes..."><button>Buscar</button></form>
+        <div id="status"></div><div id="movie-grid"></div>
+      </section>
+      <section id="locacoes" class="rentals">
+        <p class="eyebrow">Sua estante</p><h2>Minhas locações</h2><div id="rentals-list"></div>
+      </section>
+    </main>
+    <footer>NET.Physics © 2025 <span>Powered by TMDB</span></footer>
+    <dialog id="movie-dialog"><button class="close" aria-label="Fechar">×</button><div id="movie-detail"></div></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
