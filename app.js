@@ -1,4 +1,4 @@
-const API_KEY = "YOUR_TMDB_API_KEY";
+const API_KEY = "3f197a5e6c35af045a738731078dbe50";
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 const grid = document.querySelector("#movie-grid");
 const status = document.querySelector("#status");
