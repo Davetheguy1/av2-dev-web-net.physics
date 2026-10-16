@@ -151,6 +151,7 @@ function renderMovies(movies) {
 async function requestMovies(search = "", releaseBefore = null) {
   if (API_KEY === "YOUR_TMDB_API_KEY") {
     const query = search.toLocaleLowerCase();
+    
     const movies = query
       ? demoMovies.filter((movie) => {
           return `${movie.title} ${movie.overview}`.toLocaleLowerCase().includes(query);
@@ -165,12 +166,15 @@ async function requestMovies(search = "", releaseBefore = null) {
     : releaseBefore
       ? "discover/movie"
       : "movie/popular";
+
   const filters = search
     ? `&query=${encodeURIComponent(search)}`
     : releaseBefore
       ? `&sort_by=popularity.desc&primary_release_date.lte=${releaseBefore - 1}-12-31`
       : "";
+
   const url = `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=pt-BR${filters}`;
+  
   const response = await fetch(url);
 
   if (!response.ok) {
