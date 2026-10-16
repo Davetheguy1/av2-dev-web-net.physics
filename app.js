@@ -20,7 +20,16 @@ const demoMovies = [
 ];
 
 function year(date) { return date ? date.slice(0, 4) : "—"; }
-function posterUrl(path) { return path ? IMAGE_URL + path : ""; }
+const legacyPosters = {
+  "Fight Club": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+  "Forrest Gump": "/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
+  "The Dark Knight": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+  "Batman: The Dark Knight": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+  "Clube da Luta": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+  "Batman: O Cavaleiro das Trevas": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+};
+
+function posterUrl(path) { return path ? IMAGE_URL + path : "assets/banner.jpg"; }
 function updateRentalCount() { document.querySelectorAll(".rental-count").forEach((counter) => { counter.textContent = JSON.parse(localStorage.getItem("rentals") || "[]").length; }); }
 
 function renderMovies(movies) {
@@ -86,7 +95,7 @@ function renderRentals() {
   const rentals = JSON.parse(localStorage.getItem("rentals") || "[]");
   list.innerHTML = rentals.length ? rentals.map((rental) => {
     const movie = demoMovies.find((item) => item.title === rental.title);
-    const poster = rental.poster_path || movie?.poster_path;
+    const poster = rental.poster_path || movie?.poster_path || legacyPosters[rental.title];
     const releaseDate = rental.release_date || movie?.release_date;
     return `<article class="rental-card">
       <img class="poster" src="${posterUrl(poster)}" alt="Pôster de ${rental.title}">
