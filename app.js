@@ -22,6 +22,7 @@ const demoMovies = [
 function year(date) { return date ? date.slice(0, 4) : "—"; }
 const legacyPosters = {
   "Fight Club": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+  "Pulp Fiction": "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
   "Forrest Gump": "/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
   "The Dark Knight": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
   "Batman: The Dark Knight": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
