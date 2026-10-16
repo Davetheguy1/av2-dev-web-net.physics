@@ -28,24 +28,27 @@ function renderMovies(movies) {
   grid.innerHTML = movies.length ? movies.map((movie) => `<article class="movie-card"><a href="movie.html?id=${movie.id}"><img class="poster" src="${posterUrl(movie.poster_path)}" alt="Pôster de ${movie.title}"><h3>${movie.title}</h3><span class="meta">${year(movie.release_date)} · 4 formatos disponíveis</span></a></article>`).join("") : "<p class='empty'>Nenhum filme encontrado para essa busca.</p>";
 }
 
-async function requestMovies(search = "") {
+async function requestMovies(search = "", releaseBefore = null) {
   if (API_KEY === "YOUR_TMDB_API_KEY") {
     const query = search.toLocaleLowerCase();
-    return query ? demoMovies.filter((movie) => `${movie.title} ${movie.overview}`.toLocaleLowerCase().includes(query)) : demoMovies;
+    let movies = query ? demoMovies.filter((movie) => `${movie.title} ${movie.overview}`.toLocaleLowerCase().includes(query)) : demoMovies;
+    if (!query && releaseBefore) movies = movies.filter((movie) => Number(movie.release_date.slice(0, 4)) < releaseBefore);
+    return movies;
   }
-  const endpoint = search ? "search/movie" : "movie/popular";
-  const url = `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=pt-BR${search ? `&query=${encodeURIComponent(search)}` : ""}`;
+  const endpoint = search ? "search/movie" : releaseBefore ? "discover/movie" : "movie/popular";
+  const filters = search ? `&query=${encodeURIComponent(search)}` : releaseBefore ? `&sort_by=popularity.desc&primary_release_date.lte=${releaseBefore - 1}-12-31` : "";
+  const url = `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=pt-BR${filters}`;
   const response = await fetch(url);
   if (!response.ok) throw new Error("Falha na resposta da TMDB");
   const data = await response.json();
   return data.results || [];
 }
 
-async function loadCatalog(limit = null) {
+async function loadCatalog(limit = null, releaseBefore = null) {
   if (!grid) return;
   if (status) status.textContent = "Carregando o catálogo...";
   try {
-    const movies = await requestMovies(document.querySelector("#search-input")?.value.trim() || "");
+    const movies = await requestMovies(document.querySelector("#search-input")?.value.trim() || "", releaseBefore);
     renderMovies(limit ? movies.slice(0, limit) : movies);
     if (status) status.textContent = `${movies.length} filmes disponíveis.`;
   } catch (error) {
@@ -86,7 +89,7 @@ function renderRentals() {
 
 if (page === "home") loadCatalog(4);
 if (page === "catalog") {
-  loadCatalog();
+  loadCatalog(null, 2006);
   document.querySelector("#search-form").addEventListener("submit", (event) => { event.preventDefault(); loadCatalog(); });
 }
 if (page === "movie") loadMoviePage();
