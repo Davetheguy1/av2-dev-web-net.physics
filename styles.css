@@ -3,8 +3,8 @@
 body { margin:0; background:var(--cream); color:var(--ink); font:16px Arial,sans-serif; }
 a { color:inherit; text-decoration:none; }
 header { display:flex; justify-content:space-between; padding:24px 10%; border-bottom:1px solid var(--line); background:var(--cream); color:var(--ink); }
-.brand { font-size:22px; font-weight:700; letter-spacing:-.08em; } .brand span { color:var(--orange); }
-nav { display:flex; gap:2rem; align-items:center; font-size:.85rem; font-weight:600; } nav a { color:var(--ink); transition:color .2s; } nav a:hover { color:var(--yellow); } nav b { border-radius:50%; padding:3px 7px; background:var(--orange); color:white; font-size:.7rem; }
+.brand { font-size:22px; font-weight:700; letter-spacing:-.08em; } .brand span { color:var(--yellow); }
+nav { display:flex; gap:2rem; align-items:center; font-size:.85rem; font-weight:600; } nav a { color:var(--ink); transition:color .2s; } nav a:hover { color:var(--yellow); } nav b { border-radius:50%; padding:3px 7px; background:var(--yellow); color:#11110f; font-size:.7rem; }
 .hero { min-height:560px; padding:12% 10%; background-image:linear-gradient(90deg, rgba(17,17,15,.9) 0%, rgba(17,17,15,.68) 48%, rgba(17,17,15,.2) 100%), url("assets/banner.jpg"); background-size:cover; background-position:center; color:white; } .eyebrow,.mono,.meta { color:var(--muted); font:11px monospace; letter-spacing:.12em; text-transform:uppercase; } .hero .eyebrow { color:white; }
 .hero h1 { margin:20px 0; font-size:clamp(60px,10vw,140px); line-height:.8; letter-spacing:-8px; } .hero em { color:var(--yellow); }
 .hero p:not(.eyebrow) { max-width:360px; line-height:1.5; } .button,form button { display:inline-block; border:0; padding:15px 22px; background:var(--yellow); color:#11110f; font-weight:bold; cursor:pointer; }
@@ -16,7 +16,7 @@ form#search-form { display:flex; margin:30px 0; } #search-form input { flex:1; b
 footer { display:flex; justify-content:space-between; padding:2rem 10%; color:var(--muted); font:11px monospace; } dialog { width:min(850px,90%); border:0; padding:0; background:var(--cream); color:var(--ink); } dialog::backdrop { background:#0008; }
 .detail-copy h2, .detail-copy p:not(.eyebrow), .rental-form label { color:var(--ink); } .close { position:absolute; top:15px; right:15px; border:0; border-radius:50%; background:var(--ink); color:var(--cream); font-size:1.5rem; cursor:pointer; } .detail { display:flex; } .detail img { width:40%; object-fit:cover; } .detail-copy { padding:30px; }
 .rental-form { display:grid; gap:10px; border-top:1px solid var(--line); padding-top:1.5rem; } .rental-form input,.rental-form select { padding:10px; background:var(--cream); color:var(--ink); border:1px solid var(--line); } .rental-form input[type="date"] { color-scheme:dark; } .rental-form button { background:var(--yellow); color:#11110f; }
-@media (max-width:700px) { nav { display:none; } #movie-grid { grid-template-columns:repeat(2,1fr); } .heading { display:block; } .detail { display:block; } .detail img { width:100%; height:280px; } footer { display:block; } }
+@media (max-width:700px) { header { flex-wrap:wrap; gap:1rem; padding:18px 6%; } nav { width:100%; justify-content:center; gap:.75rem; flex-wrap:wrap; } nav a { font-size:.72rem; } #movie-grid { grid-template-columns:repeat(2,1fr); } .heading { display:block; } .detail { display:block; } .detail img { width:100%; height:280px; } footer { display:block; } }
 
 .page-section { min-height: calc(100vh - 150px); }
 .page-heading { margin: 2rem 0 2.5rem; padding-bottom: 1.5rem; }
@@ -47,3 +47,6 @@ footer { display:flex; justify-content:space-between; padding:2rem 10%; color:va
 .rental-card-copy h3 { margin: .55rem 0; font-size: 1.1rem; }
 .rental-card-copy .meta { color: var(--yellow); }
 .rental-period { margin: 0; color: var(--muted); font: 12px monospace; }
+
+.about-copy { max-width: 850px; margin-top: 3rem; }
+.about-copy p { color: var(--ink); font-size: clamp(1.35rem, 3vw, 2.6rem); line-height: 1.25; letter-spacing: -.04em; }
