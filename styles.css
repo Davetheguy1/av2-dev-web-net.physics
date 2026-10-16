@@ -17,3 +17,25 @@ footer { display:flex; justify-content:space-between; padding:2rem 10%; color:va
 .detail-copy h2, .detail-copy p:not(.eyebrow), .rental-form label { color:var(--ink); } .close { position:absolute; top:15px; right:15px; border:0; border-radius:50%; background:var(--ink); color:var(--cream); font-size:1.5rem; cursor:pointer; } .detail { display:flex; } .detail img { width:40%; object-fit:cover; } .detail-copy { padding:30px; }
 .rental-form { display:grid; gap:10px; border-top:1px solid var(--line); padding-top:1.5rem; } .rental-form input,.rental-form select { padding:10px; background:var(--cream); color:var(--ink); border:1px solid var(--line); } .rental-form button { background:var(--orange); color:white; }
 @media (max-width:700px) { nav { display:none; } #movie-grid { grid-template-columns:repeat(2,1fr); } .heading { display:block; } .detail { display:block; } .detail img { width:100%; height:280px; } footer { display:block; } }
+
+.page-section { min-height: calc(100vh - 150px); }
+.page-heading { margin: 2rem 0 2.5rem; padding-bottom: 1.5rem; }
+.page-heading h1 { margin: 0; font-size: clamp(3rem, 8vw, 7rem); line-height: .9; letter-spacing: -0.08em; }
+.back-link { display: inline-block; margin-bottom: 2rem; color: var(--muted); font: 11px monospace; text-transform: uppercase; letter-spacing: .08em; }
+.back-link:hover, .link-arrow:hover { color: var(--yellow); }
+.link-arrow { transition: color .2s; }
+.featured-section { padding-top: 5rem !important; }
+.movie-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem 1rem; margin-top: 2rem; }
+.catalog-grid { row-gap: 3rem; }
+.movie-card a { display: block; }
+.movie-detail-page { margin-top: 2rem; }
+.movie-detail-page .detail { max-width: 1050px; margin: 0 auto; background: #181816; }
+.movie-detail-page .detail img { max-height: 700px; }
+.movie-detail-page .detail-copy { flex: 1; }
+.movie-detail-page .detail-copy h1 { margin: 1rem 0; font-size: clamp(2.5rem, 5vw, 5rem); line-height: .95; letter-spacing: -.06em; color: var(--ink); }
+.rentals-page .heading { margin-bottom: 2rem; }
+.rentals-list { max-width: 900px; }
+@media (max-width: 700px) {
+  .movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem .8rem; }
+  .movie-detail-page .detail { background: transparent; }
+}
