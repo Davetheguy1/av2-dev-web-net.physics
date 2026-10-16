@@ -73,7 +73,7 @@ async function loadMoviePage() {
     container.querySelector(".rental-form").addEventListener("submit", (event) => {
       event.preventDefault();
       const rentals = JSON.parse(localStorage.getItem("rentals") || "[]");
-      rentals.push({ title: movie.title, format: container.querySelector("#format").value, start: container.querySelector("#start").value, finish: container.querySelector("#finish").value });
+      rentals.push({ id: movie.id, title: movie.title, poster_path: movie.poster_path, release_date: movie.release_date, format: container.querySelector("#format").value, start: container.querySelector("#start").value, finish: container.querySelector("#finish").value });
       localStorage.setItem("rentals", JSON.stringify(rentals));
       window.location.href = "rentals.html";
     });
@@ -84,7 +84,19 @@ function renderRentals() {
   const list = document.querySelector("#rentals-list");
   if (!list) return;
   const rentals = JSON.parse(localStorage.getItem("rentals") || "[]");
-  list.innerHTML = rentals.length ? rentals.map((rental) => `<div class="rental-item"><strong>${rental.title}</strong><span>${rental.format} · ${rental.start} → ${rental.finish}</span></div>`).join("") : "<p class='empty'>Sua estante está vazia. Encontre um filme no catálogo e alugue-o.</p>";
+  list.innerHTML = rentals.length ? rentals.map((rental) => {
+    const movie = demoMovies.find((item) => item.title === rental.title);
+    const poster = rental.poster_path || movie?.poster_path;
+    const releaseDate = rental.release_date || movie?.release_date;
+    return `<article class="rental-card">
+      <img class="poster" src="${posterUrl(poster)}" alt="Pôster de ${rental.title}">
+      <div class="rental-card-copy">
+        <p class="meta">${year(releaseDate)} · ${rental.format}</p>
+        <h3>${rental.title}</h3>
+        <p class="rental-period">${rental.start} → ${rental.finish}</p>
+      </div>
+    </article>`;
+  }).join("") : "<p class='empty'>Sua estante está vazia. Encontre um filme no catálogo e alugue-o.</p>";
 }
 
 if (page === "home") loadCatalog(4);

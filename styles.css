@@ -39,3 +39,11 @@ footer { display:flex; justify-content:space-between; padding:2rem 10%; color:va
   .movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem .8rem; }
   .movie-detail-page .detail { background: transparent; }
 }
+
+.rentals-grid { align-items: start; }
+.rental-card { overflow: hidden; background: #181816; }
+.rental-card .poster { display: block; }
+.rental-card-copy { padding: 1rem; }
+.rental-card-copy h3 { margin: .55rem 0; font-size: 1.1rem; }
+.rental-card-copy .meta { color: var(--yellow); }
+.rental-period { margin: 0; color: var(--muted); font: 12px monospace; }
