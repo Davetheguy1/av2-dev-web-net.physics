@@ -31,6 +31,10 @@ const legacyPosters = {
 };
 
 function posterUrl(path) { return path ? IMAGE_URL + path : "assets/banner.jpg"; }
+function filterMoviesBefore(movies, releaseBefore) {
+  if (!releaseBefore) return movies;
+  return movies.filter((movie) => movie.release_date && Number(movie.release_date.slice(0, 4)) < releaseBefore);
+}
 function updateRentalCount() { document.querySelectorAll(".rental-count").forEach((counter) => { counter.textContent = JSON.parse(localStorage.getItem("rentals") || "[]").length; }); }
 
 function renderMovies(movies) {
@@ -42,8 +46,7 @@ async function requestMovies(search = "", releaseBefore = null) {
   if (API_KEY === "YOUR_TMDB_API_KEY") {
     const query = search.toLocaleLowerCase();
     let movies = query ? demoMovies.filter((movie) => `${movie.title} ${movie.overview}`.toLocaleLowerCase().includes(query)) : demoMovies;
-    if (!query && releaseBefore) movies = movies.filter((movie) => Number(movie.release_date.slice(0, 4)) < releaseBefore);
-    return movies;
+    return filterMoviesBefore(movies, releaseBefore);
   }
   const endpoint = search ? "search/movie" : releaseBefore ? "discover/movie" : "movie/popular";
   const filters = search ? `&query=${encodeURIComponent(search)}` : releaseBefore ? `&sort_by=popularity.desc&primary_release_date.lte=${releaseBefore - 1}-12-31` : "";
@@ -51,7 +54,7 @@ async function requestMovies(search = "", releaseBefore = null) {
   const response = await fetch(url);
   if (!response.ok) throw new Error("Falha na resposta da TMDB");
   const data = await response.json();
-  return data.results || [];
+  return filterMoviesBefore(data.results || [], releaseBefore);
 }
 
 async function loadCatalog(limit = null, releaseBefore = null) {
