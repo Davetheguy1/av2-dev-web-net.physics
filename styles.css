@@ -95,7 +95,7 @@ nav b {
   font-weight: bold;
   cursor: pointer;
 }
-section: not(.hero) {
+section:not(.hero) {
   padding: 7% 10%;
 }
 .heading {
@@ -180,7 +180,7 @@ dialog {
   background: var(--cream);
   color: var(--ink);
 }
-dialog: :backdrop {
+dialog::backdrop {
   background: #0008;
 }
 .detail-copy h2, .detail-copy p:not(.eyebrow), .rental-form label {
