@@ -48,5 +48,10 @@ footer { display:flex; justify-content:space-between; padding:2rem 10%; color:va
 .rental-card-copy .meta { color: var(--yellow); }
 .rental-period { margin: 0; color: var(--muted); font: 12px monospace; }
 
-.about-copy { max-width: 850px; margin-top: 3rem; }
-.about-copy p { color: var(--ink); font-size: clamp(1.35rem, 3vw, 2.6rem); line-height: 1.25; letter-spacing: -.04em; }
+.about-layout { display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:4rem; margin-top:3rem; }
+.about-copy { max-width:850px; }
+.about-copy p { color:var(--ink); font-size:clamp(1.35rem, 3vw, 2.6rem); line-height:1.25; letter-spacing:-.04em; }
+.about-button { margin-top:1.5rem; }
+.about-media { margin:0; }
+.about-media img { display:block; width:100%; aspect-ratio:4 / 5; object-fit:cover; border:1px solid var(--line); }
+@media (max-width:700px) { .about-layout { grid-template-columns:1fr; gap:2rem; } .about-media { order:-1; } }

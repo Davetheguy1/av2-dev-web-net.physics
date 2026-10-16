@@ -79,7 +79,7 @@ async function loadMoviePage() {
       movie = await response.json();
     }
     if (!movie || movie.success === false) throw new Error("Filme não encontrado");
-    container.innerHTML = `<div class="detail"><img src="${posterUrl(movie.poster_path)}" alt="Pôster de ${movie.title}"><div class="detail-copy"><p class="eyebrow">${year(movie.release_date)} · Catálogo TMDB</p><h1>${movie.title}</h1><p>${movie.overview || "Sinopse indisponível."}</p><form class="rental-form"><label for="format">Formato</label><select id="format"><option>VHS</option><option>Betamax</option><option>LaserDisc</option><option>HD-DVD</option></select><label for="start">Data de início</label><input id="start" type="date" required><label for="finish">Data de devolução</label><input id="finish" type="date" required><button>Alugar este filme</button></form></div></div>`;
+    container.innerHTML = `<div class="detail"><img src="${posterUrl(movie.poster_path)}" alt="Pôster de ${movie.title}"><div class="detail-copy"><p class="eyebrow">${year(movie.release_date)} · Catálogo TMDB</p><h1>${movie.title}</h1><p>${movie.overview || "Sinopse indisponível."}</p><form class="rental-form"><label for="format">Formato</label><select id="format"><option>VHS</option><option>Betamax</option><option>LaserDisc</option><option>HD-DVD</option><option>DVD</option><option>Blu-ray</option></select><label for="start">Data de início</label><input id="start" type="date" required><label for="finish">Data de devolução</label><input id="finish" type="date" required><button>Alugar este filme</button></form></div></div>`;
     container.querySelector(".rental-form").addEventListener("submit", (event) => {
       event.preventDefault();
       const rentals = JSON.parse(localStorage.getItem("rentals") || "[]");
