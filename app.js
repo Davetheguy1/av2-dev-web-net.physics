@@ -109,7 +109,7 @@ function renderRentals() {
   }).join("") : "<p class='empty'>Sua estante está vazia. Encontre um filme no catálogo e alugue-o.</p>";
 }
 
-if (page === "home") loadCatalog(4);
+if (page === "home") loadCatalog(4, 2006);
 if (page === "catalog") {
   loadCatalog(null, 2006);
   document.querySelector("#search-form").addEventListener("submit", (event) => { event.preventDefault(); loadCatalog(); });
